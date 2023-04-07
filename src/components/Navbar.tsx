@@ -10,6 +10,7 @@ import NewIcon from './ui/icons/NewIcon';
 import NewFillIcon from './ui/icons/NewFillIcon';
 import ColroButton from './ui/ColroButton';
 import { useSession, signIn, signOut } from 'next-auth/react';
+import { dancingScript } from './ui/font/font';
 
 const menu = [
   {
@@ -29,18 +30,14 @@ const menu = [
   },
 ];
 
-type Props = {
-  font: string;
-};
-
-export default function Navbar({ font }: Props) {
+export default function Navbar() {
   const pathname = usePathname();
   const { data: session } = useSession();
 
   return (
     <div className='flex items-center justify-between px-6'>
       <Link href='/' className='text-3xl font-bold'>
-        <h1 className={font}>Jeongstagram</h1>
+        <h1 className={dancingScript.className}>Jeongstagram</h1>
       </Link>
       <nav>
         <ul className='flex items-center gap-4 p-4'>
@@ -52,9 +49,13 @@ export default function Navbar({ font }: Props) {
             </li>
           ))}
           {session ? (
-            <ColroButton text='Sign out' onClick={() => signOut()} />
+            <ColroButton
+              text='Sign out'
+              onClick={() => signOut()}
+              size='small'
+            />
           ) : (
-            <ColroButton text='Sign in' onClick={() => signIn()} />
+            <ColroButton text='Sign in' onClick={() => signIn()} size='small' />
           )}
         </ul>
       </nav>
