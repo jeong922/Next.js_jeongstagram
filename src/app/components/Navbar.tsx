@@ -10,8 +10,6 @@ import NewIcon from './ui/icons/NewIcon';
 import NewFillIcon from './ui/icons/NewFillIcon';
 import ColroButton from './ui/ColroButton';
 
-const ICON_STYLES = 'text-3xl font-bold mr-2';
-
 const menu = [
   {
     herf: '/',
@@ -30,12 +28,16 @@ const menu = [
   },
 ];
 
-export default function Navbar() {
+type Props = {
+  font: string;
+};
+
+export default function Navbar({ font }: Props) {
   const pathname = usePathname();
   return (
     <div className='flex items-center justify-between px-6'>
       <Link href='/' className='text-3xl font-bold'>
-        <h1>Jeongstagram</h1>
+        <h1 className={font}>Jeongstagram</h1>
       </Link>
       <nav>
         <ul className='flex items-center gap-4 p-4'>

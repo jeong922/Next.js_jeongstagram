@@ -1,8 +1,8 @@
 import Navbar from './components/Navbar';
 import './globals.css';
-
-import { Open_Sans } from 'next/font/google';
+import { Open_Sans, Dancing_Script } from 'next/font/google';
 const openSans = Open_Sans({ subsets: ['latin'] });
+const dancingScript = Dancing_Script({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Create Next App',
@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang='en' className={openSans.className}>
       <body className='w-full max-w-screen-xl mx-auto overflow-auto'>
         <header className='sticky top-0 z-10 bg-white border-b'>
-          <Navbar />
+          <Navbar font={dancingScript.className} />
         </header>
         <main>{children}</main>
       </body>
