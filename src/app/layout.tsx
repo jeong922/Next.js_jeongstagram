@@ -1,4 +1,4 @@
-import Navbar from './components/Navbar';
+import Navbar from '@/components/Navbar';
 import './globals.css';
 import { Open_Sans, Dancing_Script } from 'next/font/google';
 const openSans = Open_Sans({ subsets: ['latin'] });
