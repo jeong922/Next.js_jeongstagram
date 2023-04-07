@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar';
 import './globals.css';
 import { Open_Sans, Dancing_Script } from 'next/font/google';
+import AuthContext from '@/context/AuthContext';
 const openSans = Open_Sans({ subsets: ['latin'] });
 const dancingScript = Dancing_Script({ subsets: ['latin'] });
 
@@ -17,10 +18,12 @@ export default function RootLayout({
   return (
     <html lang='en' className={openSans.className}>
       <body className='w-full max-w-screen-xl mx-auto overflow-auto'>
-        <header className='sticky top-0 z-10 bg-white border-b'>
-          <Navbar font={dancingScript.className} />
-        </header>
-        <main>{children}</main>
+        <AuthContext>
+          <header className='sticky top-0 z-10 bg-white border-b'>
+            <Navbar font={dancingScript.className} />
+          </header>
+          <main>{children}</main>
+        </AuthContext>
       </body>
     </html>
   );

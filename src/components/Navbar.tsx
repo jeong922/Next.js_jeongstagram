@@ -9,6 +9,7 @@ import SearchFillIcon from './ui/icons/SearchFillIcon';
 import NewIcon from './ui/icons/NewIcon';
 import NewFillIcon from './ui/icons/NewFillIcon';
 import ColroButton from './ui/ColroButton';
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 const menu = [
   {
@@ -34,6 +35,8 @@ type Props = {
 
 export default function Navbar({ font }: Props) {
   const pathname = usePathname();
+  const { data: session } = useSession();
+
   return (
     <div className='flex items-center justify-between px-6'>
       <Link href='/' className='text-3xl font-bold'>
@@ -48,7 +51,11 @@ export default function Navbar({ font }: Props) {
               </Link>
             </li>
           ))}
-          <ColroButton text='Sign in' onClick={() => {}} />
+          {session ? (
+            <ColroButton text='Sign out' onClick={() => signOut()} />
+          ) : (
+            <ColroButton text='Sign in' onClick={() => signIn()} />
+          )}
         </ul>
       </nav>
     </div>
