@@ -11,6 +11,7 @@ import NewFillIcon from './ui/icons/NewFillIcon';
 import ColroButton from './ui/ColroButton';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { dancingScript } from './ui/font/font';
+import Avatar from './Avatar';
 
 const menu = [
   {
@@ -33,6 +34,7 @@ const menu = [
 export default function Navbar() {
   const pathname = usePathname();
   const { data: session } = useSession();
+  const user = session?.user;
 
   return (
     <div className='flex items-center justify-between px-6'>
@@ -48,15 +50,21 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
-          {session ? (
-            <ColroButton
-              text='Sign out'
-              onClick={() => signOut()}
-              size='small'
-            />
-          ) : (
-            <ColroButton text='Sign in' onClick={() => signIn()} size='small' />
+
+          {user && (
+            <li>
+              <Link href={`/user/${user.username}`}>
+                <Avatar image={user.image} />
+              </Link>
+            </li>
           )}
+          <li>
+            {session ? (
+              <ColroButton text='Sign out' onClick={() => signOut()} />
+            ) : (
+              <ColroButton text='Sign in' onClick={() => signIn()} />
+            )}
+          </li>
         </ul>
       </nav>
     </div>
