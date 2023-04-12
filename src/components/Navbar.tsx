@@ -37,7 +37,7 @@ export default function Navbar() {
   const user = session?.user;
 
   return (
-    <div className='flex items-center justify-between px-6'>
+    <div className='flex items-center justify-between max-w-screen-xl px-6 mx-auto '>
       <Link href='/' className='text-3xl font-bold'>
         <h1 className={dancingScript.className}>Jeongstagram</h1>
       </Link>

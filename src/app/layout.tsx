@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar';
 import './globals.css';
 import { Open_Sans } from 'next/font/google';
 import AuthContext from '@/context/AuthContext';
+import SWRConfigContext from '@/context/SWRConfigContext';
 const openSans = Open_Sans({ subsets: ['latin'] });
 
 export const metadata = {
@@ -16,12 +17,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' className={openSans.className}>
-      <body className='w-full max-w-screen-xl mx-auto overflow-auto'>
+      <body className='w-full mx-auto scrollbar-thin scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-800'>
         <AuthContext>
           <header className='sticky top-0 z-10 bg-white border-b'>
             <Navbar />
           </header>
-          <main>{children}</main>
+          <main className='flex justify-center w-full min-h-full bg-neutral-50'>
+            <SWRConfigContext>{children}</SWRConfigContext>
+          </main>
         </AuthContext>
       </body>
     </html>
