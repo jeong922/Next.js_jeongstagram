@@ -16,7 +16,7 @@ export default function FollowingBar() {
   //   ...data?.following,
   // ];
   return (
-    <section className='flex items-center justify-center w-full p-4 mb-4 rounded-lg shadow-sm shadow-neutral-300 min-h-[90px] overflow-x-auto'>
+    <section className='flex items-center justify-center w-full p-4 mb-4 min-h-[90px] overflow-x-auto border-b border-neutral-300'>
       {loading ? (
         <BeatLoader size={8} color='rgb(79 70 229)' />
       ) : (
