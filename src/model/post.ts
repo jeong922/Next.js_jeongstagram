@@ -1,5 +1,6 @@
 export type Comment = {
-  commnet: string;
+  [x: string]: any;
+  comment: string;
   username: string;
   image: string;
 };
@@ -16,6 +17,6 @@ export type FullPost = {
   image: string;
   likes: string[];
   text: string;
-  comments: Comment;
+  comments: Comment[];
   createdAt: string;
 };
