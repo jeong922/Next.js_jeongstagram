@@ -4,14 +4,17 @@ import { FormEvent, useState } from 'react';
 import { FadeLoader } from 'react-spinners';
 import useSWR from 'swr';
 import SearchUserCard from './SearchUserCard';
+import useDebounce from '@/hook/useDebounce';
 
 export default function SearchUser() {
   const [keyword, setKeyword] = useState('');
+  const debouncedKeyword = useDebounce(keyword);
   const {
     data: users,
     isLoading: loading,
     error,
-  } = useSWR<ProfileUser[]>(`/api/search/${keyword}`);
+  } = useSWR<ProfileUser[]>(`/api/search/${debouncedKeyword}`);
+
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
   };
