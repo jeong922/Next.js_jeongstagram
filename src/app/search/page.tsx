@@ -1,3 +1,9 @@
+import SearchUser from '@/components/SearchUser';
+
 export default function SearchPage() {
-  return <div>search</div>;
+  return (
+    <section className='w-full'>
+      <SearchUser />
+    </section>
+  );
 }

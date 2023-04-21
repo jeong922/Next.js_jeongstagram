@@ -1,5 +1,4 @@
 export type Comment = {
-  [x: string]: any;
   comment: string;
   username: string;
   image: string;

@@ -17,12 +17,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' className={openSans.className}>
-      <body className='w-full mx-auto scrollbar-thin scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-800'>
+      <body className='w-full mx-auto scrollbar-thin scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-800 bg-neutral-50'>
         <AuthContext>
           <header className='sticky top-0 z-10 bg-white border-b'>
             <Navbar />
           </header>
-          <main className='flex justify-center w-full min-h-full bg-neutral-50'>
+          <main className='flex justify-center w-full'>
             <SWRConfigContext>{children}</SWRConfigContext>
           </main>
         </AuthContext>
