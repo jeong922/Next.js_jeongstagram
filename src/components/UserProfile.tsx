@@ -14,7 +14,7 @@ export default function UserProfile({ user }: Props) {
     { title: 'followers', data: followers },
   ];
   return (
-    <section className='flex flex-col items-center justify-center w-full py-12 border md:flex-row border-neutral-300'>
+    <section className='flex flex-col items-center justify-center w-full py-12 border-b md:flex-row border-neutral-300'>
       <Avatar image={image} size='xlarge' highlight />
       <div className='md:ml-10 basis-1/3'>
         <div className='flex flex-col items-center md:flex-row'>
