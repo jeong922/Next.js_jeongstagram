@@ -1,9 +1,9 @@
-import SearchUser from '@/components/SearchUser';
+import UserSearch from '@/components/UserSearch';
 
 export default function SearchPage() {
   return (
     <section className='w-full'>
-      <SearchUser />
+      <UserSearch />
     </section>
   );
 }

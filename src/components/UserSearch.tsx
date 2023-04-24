@@ -1,19 +1,19 @@
 'use client';
-import { ProfileUser } from '@/model/user';
+import { SearchUser } from '@/model/user';
 import { FormEvent, useState } from 'react';
 import { FadeLoader } from 'react-spinners';
 import useSWR from 'swr';
-import SearchUserCard from './SearchUserCard';
 import useDebounce from '@/hook/useDebounce';
+import UserSearchCard from './UserSearchCard';
 
-export default function SearchUser() {
+export default function UserSearch() {
   const [keyword, setKeyword] = useState('');
   const debouncedKeyword = useDebounce(keyword);
   const {
     data: users,
     isLoading: loading,
     error,
-  } = useSWR<ProfileUser[]>(`/api/search/${debouncedKeyword}`);
+  } = useSWR<SearchUser[]>(`/api/search/${debouncedKeyword}`);
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -39,7 +39,7 @@ export default function SearchUser() {
         {users &&
           users.map((user) => (
             <li key={user.username}>
-              <SearchUserCard user={user} />
+              <UserSearchCard user={user} />
             </li>
           ))}
       </ul>
