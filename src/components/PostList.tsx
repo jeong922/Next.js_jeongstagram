@@ -1,8 +1,8 @@
 'use client';
 import { SimplePost } from '@/model/post';
 import useSWR from 'swr';
-import { FadeLoader } from 'react-spinners';
 import PostListCard from './PostListCard';
+import FadeSpinner from './ui/FadeSpinner';
 
 export default function PostList() {
   const { data: posts, isLoading: loading } =
@@ -10,8 +10,8 @@ export default function PostList() {
   return (
     <section>
       {loading && (
-        <div className='flex justify-center mt-32'>
-          <FadeLoader color='rgb(79 70 229)' />
+        <div className='flex justify-center w-full mt-32'>
+          <FadeSpinner />
         </div>
       )}
       {posts && (

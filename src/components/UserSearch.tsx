@@ -5,6 +5,7 @@ import { FadeLoader } from 'react-spinners';
 import useSWR from 'swr';
 import useDebounce from '@/hook/useDebounce';
 import UserSearchCard from './UserSearchCard';
+import FadeSpinner from './ui/FadeSpinner';
 
 export default function UserSearch() {
   const [keyword, setKeyword] = useState('');
@@ -31,7 +32,11 @@ export default function UserSearch() {
         />
       </form>
       {error && <p>❗❗무언가 잘못 되었음.</p>}
-      {loading && <FadeLoader color='rgb(79 70 229)' />}
+      {loading && (
+        <div className='flex justify-center w-full mt-32'>
+          <FadeSpinner />
+        </div>
+      )}
       {!loading && !error && users?.length === 0 && (
         <p>일치하는 사용자가 없습니다.</p>
       )}

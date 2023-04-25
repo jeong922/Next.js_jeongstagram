@@ -1,7 +1,7 @@
 import { SimplePost } from '@/model/post';
-import { FadeLoader } from 'react-spinners';
 import useSWR from 'swr';
 import PostGridCard from './PostGridCard';
+import FadeSpinner from './ui/FadeSpinner';
 
 type Props = {
   username: string;
@@ -19,7 +19,7 @@ export default function PostGrid({ username, query }: Props) {
     <div>
       {isLoading && (
         <div className='flex justify-center w-full mt-32'>
-          <FadeLoader color='rgb(79 70 229)' />
+          <FadeSpinner />
         </div>
       )}
       <ul className='grid grid-cols-3 gap-4 px-8 py-4'>
