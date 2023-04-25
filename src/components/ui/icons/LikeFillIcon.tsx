@@ -5,5 +5,5 @@ type Props = {
 };
 
 export default function LikeFillIcon({ className }: Props) {
-  return <AiFillHeart className={className || 'w-7 h-7 text-red-700'} />;
+  return <AiFillHeart className={className || 'w-7 h-7 text-red-500'} />;
 }

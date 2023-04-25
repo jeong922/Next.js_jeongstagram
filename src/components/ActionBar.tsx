@@ -1,20 +1,48 @@
 import { parseDate } from '@/util/date';
 import BookmarkIcon from './ui/icons/BookmarkIcon';
 import LikeIcon from './ui/icons/LikeIcon';
+import { useState } from 'react';
+import ToggleButton from './ui/ToggleButton';
+import LikeFillIcon from './ui/icons/LikeFillIcon';
+import BookmarkFillIcon from './ui/icons/BookmarkFillIcon';
+import { SimplePost } from '@/model/post';
+import { useSession } from 'next-auth/react';
+import { useSWRConfig } from 'swr';
 
 type Props = {
-  likes: string[];
-  username: string;
-  text?: string;
-  createdAt: string;
+  post: SimplePost;
 };
 
-export default function ActionBar({ likes, username, text, createdAt }: Props) {
+export default function ActionBar({ post }: Props) {
+  const { id, likes, username, text, createdAt } = post;
+  const { data: session } = useSession();
+  const user = session?.user;
+  const liked = user ? likes.includes(user.username) : false;
+  const [bookmarked, setBookmarked] = useState(false);
+  const { mutate } = useSWRConfig();
+
+  const handleLike = (like: boolean) => {
+    fetch('/api/likes', {
+      method: 'PUT',
+      body: JSON.stringify({ id, like }),
+    }).then(() => mutate('/api/posts'));
+  };
+
   return (
     <>
       <div className='flex justify-between px-4 my-2'>
-        <LikeIcon />
-        <BookmarkIcon />
+        <ToggleButton
+          toggled={liked}
+          onToggle={handleLike}
+          onIcon={<LikeFillIcon />}
+          offIcon={<LikeIcon />}
+        />
+        <ToggleButton
+          toggled={bookmarked}
+          onToggle={setBookmarked}
+          onIcon={<BookmarkFillIcon />}
+          offIcon={<BookmarkIcon />}
+        />
       </div>
       <div className='px-4 py-1'>
         {text && (
