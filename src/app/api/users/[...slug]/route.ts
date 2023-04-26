@@ -6,6 +6,7 @@ type Context = {
     slug: string[];
   };
 };
+
 export async function GET(_: NextRequest, context: Context) {
   const { slug } = context.params;
 
@@ -17,7 +18,7 @@ export async function GET(_: NextRequest, context: Context) {
 
   let request = getPostsOf;
 
-  if (query === 'seved') {
+  if (query === 'saved') {
     request = getSavedPostsOf;
   } else if (query === 'liked') {
     request = getLikedPostsOf;
