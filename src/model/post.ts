@@ -1,7 +1,7 @@
 export type Comment = {
   comment: string;
   username: string;
-  image: string;
+  image?: string;
 };
 
 // Omit : 원하는 타입 빼기

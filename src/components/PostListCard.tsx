@@ -10,6 +10,7 @@ import ModalPotal from './ModalPotal';
 import PostModal from './PostModal';
 import PostDetail from './PostDetail';
 import PostUserAvatar from './PostUserAvatar';
+import usePosts from '@/hook/usePosts';
 
 type Props = {
   post: SimplePost;
@@ -19,6 +20,11 @@ type Props = {
 export default function PostListCard({ post, priority = false }: Props) {
   const { userImage, username, image, comments, text } = post;
   const [openModal, setOpenModal] = useState(false);
+  const { postComment } = usePosts();
+  const handlePostComment = (comment: string) => {
+    postComment(post, comment);
+  };
+
   return (
     <article className='overflow-hidden rounded-lg shadow-md'>
       <PostUserAvatar image={userImage} username={username} />
@@ -44,7 +50,7 @@ export default function PostListCard({ post, priority = false }: Props) {
           >{`View all ${comments} comments`}</button>
         )}
       </ActionBar>
-      <CommentForm />
+      <CommentForm onPostComment={handlePostComment} />
       {openModal && (
         <ModalPotal>
           <PostModal onClose={() => setOpenModal(false)}>
