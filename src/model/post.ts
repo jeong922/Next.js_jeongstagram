@@ -6,7 +6,7 @@ export type Comment = {
 
 // Omit : 원하는 타입 빼기
 export type SimplePost = Omit<FullPost, 'comments'> & {
-  comment: number;
+  comments: number;
 };
 
 export type FullPost = {

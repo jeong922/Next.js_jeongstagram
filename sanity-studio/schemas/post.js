@@ -33,7 +33,7 @@ export default {
       of: [
         {
           title: 'Comment',
-          name: 'commnet',
+          name: 'comment',
           type: 'document',
           fields: [
             {
