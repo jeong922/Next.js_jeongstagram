@@ -13,6 +13,7 @@ export default function UserProfile({ user }: Props) {
     { title: 'following', data: following },
     { title: 'followers', data: followers },
   ];
+
   return (
     <section className='flex flex-col items-center justify-center w-full py-12 border-b md:flex-row border-neutral-300'>
       <Avatar image={image} size='xlarge' highlight />
@@ -29,7 +30,9 @@ export default function UserProfile({ user }: Props) {
             </li>
           ))}
         </ul>
-        <p className='text-xl font-bold text-center md:text-start'>name</p>
+        <p className='text-xl font-bold text-center md:text-start'>
+          {username}
+        </p>
       </div>
     </section>
   );

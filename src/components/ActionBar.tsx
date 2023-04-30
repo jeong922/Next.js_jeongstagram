@@ -1,21 +1,21 @@
 import { parseDate } from '@/util/date';
 import BookmarkIcon from './ui/icons/BookmarkIcon';
 import LikeIcon from './ui/icons/LikeIcon';
-import { useState } from 'react';
 import ToggleButton from './ui/ToggleButton';
 import LikeFillIcon from './ui/icons/LikeFillIcon';
 import BookmarkFillIcon from './ui/icons/BookmarkFillIcon';
-import { SimplePost } from '@/model/post';
-import { useSession } from 'next-auth/react';
+import { Comment, SimplePost } from '@/model/post';
 import usePosts from '@/hook/usePosts';
 import useMe from '@/hook/useMe';
+import CommentForm from './CommentForm';
 
 type Props = {
   post: SimplePost;
   children?: React.ReactNode;
+  onComment: (comment: Comment) => void;
 };
 
-export default function ActionBar({ post, children }: Props) {
+export default function ActionBar({ post, children, onComment }: Props) {
   const { id, likes, createdAt } = post;
   const { user, setBookmark } = useMe();
   const { setLike } = usePosts();
@@ -29,6 +29,10 @@ export default function ActionBar({ post, children }: Props) {
 
   const handleBookmark = (bookmark: boolean) => {
     user && setBookmark(id, bookmark);
+  };
+
+  const handleComment = (comment: string) => {
+    user && onComment({ comment, username: user.username, image: user.image });
   };
 
   return (
@@ -54,6 +58,7 @@ export default function ActionBar({ post, children }: Props) {
         {children}
         <p className='my-2 text-xs text-neutral-500'>{parseDate(createdAt)}</p>
       </div>
+      <CommentForm onPostComment={handleComment} />
     </>
   );
 }
