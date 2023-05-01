@@ -1,17 +1,9 @@
-import { SimplePost } from '@/model/post';
-import useSWR from 'swr';
 import PostGridCard from './PostGridCard';
 import FadeSpinner from './ui/FadeSpinner';
 import usePosts from '@/hook/usePosts';
 
-type Props = {
-  username: string;
-  query: string;
-};
-
-export default function PostGrid({ username, query }: Props) {
-  const cachekey = `/api/users/${username}/${query}`;
-  const { posts, isLoading } = usePosts(cachekey);
+export default function PostGrid() {
+  const { posts, isLoading } = usePosts();
 
   return (
     <div>
@@ -24,11 +16,7 @@ export default function PostGrid({ username, query }: Props) {
         {posts &&
           posts.map((post, index) => (
             <li key={post.id}>
-              <PostGridCard
-                post={post}
-                priority={index < 6}
-                cachekey={cachekey}
-              />
+              <PostGridCard post={post} priority={index < 6} />
             </li>
           ))}
       </ul>

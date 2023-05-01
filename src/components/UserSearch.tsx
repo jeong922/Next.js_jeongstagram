@@ -1,7 +1,6 @@
 'use client';
 import { SearchUser } from '@/model/user';
 import { FormEvent, useState } from 'react';
-import { FadeLoader } from 'react-spinners';
 import useSWR from 'swr';
 import useDebounce from '@/hook/useDebounce';
 import UserSearchCard from './UserSearchCard';
