@@ -27,7 +27,7 @@ export default function Avatar({
 }
 
 function getContainerStyle(size: AvatarSize, highlight: boolean): string {
-  const base = 'rounded-full flex justify-center items-center';
+  const base = 'rounded-full flex justify-center items-center shrink-0';
   const highlightStyle = highlight
     ? 'bg-gradient-to-bl from-blue-600 via-purple-500 to-rose-300'
     : '';
