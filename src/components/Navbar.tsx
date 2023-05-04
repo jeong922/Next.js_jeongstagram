@@ -18,16 +18,19 @@ const menu = [
     herf: '/',
     icon: <HomeIcon />,
     clickedIcon: <HomeFillIcon />,
+    title: 'Home',
   },
   {
     herf: '/search',
     icon: <SearchIcon />,
     clickedIcon: <SearchFillIcon />,
+    title: 'Search users',
   },
   {
     herf: '/new',
     icon: <NewIcon />,
     clickedIcon: <NewFillIcon />,
+    title: 'New post',
   },
 ];
 
@@ -38,14 +41,14 @@ export default function Navbar() {
 
   return (
     <div className='flex items-center justify-between max-w-screen-xl px-6 mx-auto '>
-      <Link href='/' className='text-3xl font-bold'>
+      <Link href='/' className='text-3xl font-bold' aria-label='Home'>
         <h1 className={dancingScript.className}>Jeongstagram</h1>
       </Link>
       <nav>
         <ul className='flex items-center gap-4 p-4'>
           {menu.map((item) => (
             <li key={item.herf}>
-              <Link href={item.herf}>
+              <Link href={item.herf} aria-label={item.title}>
                 {pathname === item.herf ? item.clickedIcon : item.icon}
               </Link>
             </li>
